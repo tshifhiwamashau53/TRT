@@ -4,20 +4,58 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 jobs:
-  build:
+  refresh-information:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Refresh official TRT information snapshot
+        run: |
+          mkdir -p data
+          python - <<'PY'
+          import json, re
+          from datetime import datetime, timezone
+          from urllib.request import Request, urlopen
+          url='https://tshwanetransit.co.za/'
+          req=Request(url,headers={'User-Agent':'TRT-Passenger-Information/1.0'})
+          html=urlopen(req,timeout=20).read().decode('utf-8','ignore')
+          text=re.sub(r'<script[\s\S]*?</script>',' ',html,flags=re.I)
+          text=re.sub(r'<style[\s\S]*?</style>',' ',text,flags=re.I)
+          text=re.sub(r'<[^>]+>',' ',text)
+          text=re.sub(r'\\s+',' ',text).strip()
+          lower=text.lower()
+          notices=[]
+          if 'suspension of areyeng bus operations in mamelodi' in lower or 'suspended' in lower and 'mamelodi' in lower:
+              notices.append({'level':'major','title':'Mamelodi Areyeng service notice','message':'The official TRT website currently reports that Areyeng bus operations in Mamelodi are suspended until further notice.'})
+          data={'source':url,'checked_at':datetime.now(timezone.utc).isoformat(),'source_status':'reachable','notices':notices}
+          open('data/live-status.json','w').write(json.dumps(data,indent=2))
+          PY
+
+      - name: Commit information snapshot
+        run: |
+          git config user.name 'TRT Information Bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/live-status.json
+          git diff --cached --quiet || git commit -m 'Refresh TRT service information'
+          git push || true
+
+  build:
+    needs: refresh-information
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -26,11 +64,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
