@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TRT Bus Service — plan routes, find stops and manage your journey.">
+  <title>TRT Bus Service</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="TRT home"><span class="brand-mark">TRT</span><span>Transit</span></a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#routes">Routes</a><a href="#stops">Stops</a><a href="#about">About</a>
+    </nav>
+    <a class="header-action" href="#planner">Plan trip</a>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">TRT BUS SERVICE</p>
+        <h1>Move around the city with confidence.</h1>
+        <p class="hero-text">Find a route, check your stops and plan a simple journey from one place to another.</p>
+        <div class="hero-actions"><a class="button primary" href="#planner">Plan a trip</a><a class="button secondary" href="#routes">View routes</a></div>
+        <div class="trust-row"><span>✓ Easy route search</span><span>✓ Mobile friendly</span><span>✓ Clear journey details</span></div>
+      </div>
+      <div class="hero-card" aria-label="Journey preview">
+        <div class="bus-illustration">🚌</div>
+        <div class="status"><span class="dot"></span> Service information</div>
+        <h2>Your journey, simplified.</h2>
+        <p>Choose your start and destination to see available TRT routes.</p>
+        <div class="mini-route"><span>START</span><b>→</b><span>DESTINATION</span></div>
+      </div>
+    </section>
+
+    <section id="planner" class="section planner-section">
+      <div class="section-heading"><p class="eyebrow">TRIP PLANNER</p><h2>Where are you going?</h2><p>Enter two locations to find a matching route.</p></div>
+      <form id="tripForm" class="planner" novalidate>
+        <label><span>From</span><select id="from" required><option value="">Select starting point</option></select></label>
+        <button class="swap" type="button" id="swapBtn" aria-label="Swap locations">↕</button>
+        <label><span>To</span><select id="to" required><option value="">Select destination</option></select></label>
+        <button class="button primary" type="submit">Find route</button>
+      </form>
+      <div id="plannerResult" class="result" aria-live="polite"></div>
+    </section>
+
+    <section id="routes" class="section">
+      <div class="section-heading row-heading"><div><p class="eyebrow">ROUTES</p><h2>Popular TRT routes</h2></div><input id="routeSearch" class="search" type="search" placeholder="Search routes or places" aria-label="Search routes"></div>
+      <div id="routeGrid" class="route-grid"></div>
+    </section>
+
+    <section id="stops" class="section stops-section">
+      <div class="section-heading"><p class="eyebrow">STOPS</p><h2>Find your stop</h2><p>Search the network for a stop and see its served routes.</p></div>
+      <div class="stop-search"><input id="stopSearch" class="search" type="search" placeholder="Search a stop..." aria-label="Search stops"></div>
+      <div id="stopList" class="stop-list"></div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div><p class="eyebrow">ABOUT TRT</p><h2>A cleaner way to plan everyday travel.</h2></div>
+      <div class="about-copy"><p>TRT is a responsive bus-service web application designed to make route discovery simple on phones, tablets and desktops.</p><div class="stats"><div><strong>24/7</strong><span>Route access</span></div><div><strong>100%</strong><span>Responsive</span></div><div><strong>1 tap</strong><span>Trip planning</span></div></div></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><div><strong>TRT Transit</strong><p>Simple journeys. Better connections.</p></div><div class="footer-links"><a href="#routes">Routes</a><a href="#stops">Stops</a><a href="#about">About</a></div></div><p class="copyright">© <span id="year"></span> TRT Bus Service. Demo application.</p></footer>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
