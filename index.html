@@ -1,69 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TRT Bus Service — plan routes, find stops and manage your journey.">
-  <title>TRT Bus Service</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b5cff"><meta name="description" content="Tshwane Transit commuter information, routes and Mamelodi timetables."><title>Tshwane Transit | Routes & Timetables</title><link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="TRT home"><span class="brand-mark">TRT</span><span>Transit</span></a>
-    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-    <nav class="nav" aria-label="Main navigation">
-      <a href="#home">Home</a><a href="#routes">Routes</a><a href="#stops">Stops</a><a href="#about">About</a>
-    </nav>
-    <a class="header-action" href="#planner">Plan trip</a>
-  </header>
-
-  <main>
-    <section id="home" class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">TRT BUS SERVICE</p>
-        <h1>Move around the city with confidence.</h1>
-        <p class="hero-text">Find a route, check your stops and plan a simple journey from one place to another.</p>
-        <div class="hero-actions"><a class="button primary" href="#planner">Plan a trip</a><a class="button secondary" href="#routes">View routes</a></div>
-        <div class="trust-row"><span>✓ Easy route search</span><span>✓ Mobile friendly</span><span>✓ Clear journey details</span></div>
-      </div>
-      <div class="hero-card" aria-label="Journey preview">
-        <div class="bus-illustration">🚌</div>
-        <div class="status"><span class="dot"></span> Service information</div>
-        <h2>Your journey, simplified.</h2>
-        <p>Choose your start and destination to see available TRT routes.</p>
-        <div class="mini-route"><span>START</span><b>→</b><span>DESTINATION</span></div>
-      </div>
-    </section>
-
-    <section id="planner" class="section planner-section">
-      <div class="section-heading"><p class="eyebrow">TRIP PLANNER</p><h2>Where are you going?</h2><p>Enter two locations to find a matching route.</p></div>
-      <form id="tripForm" class="planner" novalidate>
-        <label><span>From</span><select id="from" required><option value="">Select starting point</option></select></label>
-        <button class="swap" type="button" id="swapBtn" aria-label="Swap locations">↕</button>
-        <label><span>To</span><select id="to" required><option value="">Select destination</option></select></label>
-        <button class="button primary" type="submit">Find route</button>
-      </form>
-      <div id="plannerResult" class="result" aria-live="polite"></div>
-    </section>
-
-    <section id="routes" class="section">
-      <div class="section-heading row-heading"><div><p class="eyebrow">ROUTES</p><h2>Popular TRT routes</h2></div><input id="routeSearch" class="search" type="search" placeholder="Search routes or places" aria-label="Search routes"></div>
-      <div id="routeGrid" class="route-grid"></div>
-    </section>
-
-    <section id="stops" class="section stops-section">
-      <div class="section-heading"><p class="eyebrow">STOPS</p><h2>Find your stop</h2><p>Search the network for a stop and see its served routes.</p></div>
-      <div class="stop-search"><input id="stopSearch" class="search" type="search" placeholder="Search a stop..." aria-label="Search stops"></div>
-      <div id="stopList" class="stop-list"></div>
-    </section>
-
-    <section id="about" class="section about-section">
-      <div><p class="eyebrow">ABOUT TRT</p><h2>A cleaner way to plan everyday travel.</h2></div>
-      <div class="about-copy"><p>TRT is a responsive bus-service web application designed to make route discovery simple on phones, tablets and desktops.</p><div class="stats"><div><strong>24/7</strong><span>Route access</span></div><div><strong>100%</strong><span>Responsive</span></div><div><strong>1 tap</strong><span>Trip planning</span></div></div></div>
-    </section>
-  </main>
-
-  <footer><div class="footer-inner"><div><strong>TRT Transit</strong><p>Simple journeys. Better connections.</p></div><div class="footer-links"><a href="#routes">Routes</a><a href="#stops">Stops</a><a href="#about">About</a></div></div><p class="copyright">© <span id="year"></span> TRT Bus Service. Demo application.</p></footer>
-  <script src="assets/js/app.js" defer></script>
-</body>
-</html>
+<header class="site-header"><a class="brand" href="#home"><span class="brand-mark">TT</span><span>Tshwane Transit</span></a><button class="menu-toggle" aria-label="Menu" aria-expanded="false">☰</button><nav class="nav"><a href="#planner">Plan trip</a><a href="#timetables">Timetables</a><a href="#routes">Routes</a><a href="#about">About</a></nav><a class="header-action" href="#timetables">View timetable</a></header>
+<main>
+<section id="home" class="hero"><div><p class="eyebrow">TSHWANE TRANSIT</p><h1>Your journey starts here.</h1><p class="hero-text">Find your route, search Mamelodi timetable departures and plan your trip from your phone or computer.</p><div class="hero-actions"><a class="button primary" href="#planner">Plan a trip</a><a class="button secondary" href="#timetables">Check times</a></div><div class="trust-row"><span>Route search</span><span>Timetable search</span><span>Mobile friendly</span></div></div><div class="hero-panel"><div class="panel-label">NEXT DEPARTURE</div><div id="nextDeparture"><strong>Choose a route below</strong><span>Search the timetable to find a departure.</span></div><div class="panel-route">D23–D26 <span>Mamelodi</span></div></div></section>
+<section id="planner" class="section planner-section"><div class="section-heading"><p class="eyebrow">TRIP PLANNER</p><h2>Where are you going?</h2><p>Search the timetable by route, origin or destination.</p></div><div class="planner"><label>Route<select id="plannerRoute"><option value="">All routes</option><option>D23</option><option>D24</option><option>D25</option><option>D26</option></select></label><label>From<input id="plannerFrom" placeholder="e.g. Ikageng"></label><label>To<input id="plannerTo" placeholder="e.g. Menlyn"></label><button class="button primary" id="plannerBtn">Find trips</button></div><div id="plannerResult" class="result"></div></section>
+<section id="timetables" class="section timetable-section"><div class="section-heading row-heading"><div><p class="eyebrow">MAMELODI TIMETABLE</p><h2>Find a departure</h2><p>Search D23, D24, D25 and D26 without scrolling through a long list.</p></div><div class="route-tabs" id="routeTabs"><button class="active" data-route="ALL">All</button><button data-route="D23">D23</button><button data-route="D24">D24</button><button data-route="D25">D25</button><button data-route="D26">D26</button></div></div><div class="filters"><input id="timeSearch" type="search" placeholder="Search time, place or route..."><select id="direction"><option value="">All directions</option><option value="from">From</option><option value="to">To</option></select></div><div id="timetableList" class="timetable-list"></div><button id="loadMore" class="button secondary load-more">Load more</button></section>
+<section id="routes" class="section"><div class="section-heading"><p class="eyebrow">NETWORK</p><h2>Timetable routes</h2></div><div class="route-grid"><article class="route-card"><span>D23</span><h3>Ikageng and Centurion</h3><p>Ikageng, Wierda Park, Valhalla, Centurion Mall and surrounding destinations.</p><a href="#timetables" data-jump="D23">View D23</a></article><article class="route-card"><span>D24</span><h3>Menlyn and eastern Pretoria</h3><p>Menlyn, Faerie Glen, Garsfontein, Waterkloof, Moreleta Park and more.</p><a href="#timetables" data-jump="D24">View D24</a></article><article class="route-card"><span>D25</span><h3>Wonderboom and Ga-Rankuwa</h3><p>Wonderboom, Wonder Park, Bon Accord, Sinoville and Ga-Rankuwa.</p><a href="#timetables" data-jump="D25">View D25</a></article><article class="route-card"><span>D26</span><h3>Shift timetable</h3><p>Shift numbers and scheduled times for the D26 service.</p><a href="#timetables" data-jump="D26">View D26</a></article></div></section>
+<section id="about" class="section about-section"><div><p class="eyebrow">ABOUT</p><h2>Built around the commuter.</h2></div><div><p>Use this site to quickly find route information and timetable entries. Timetable information is presented from the supplied Mamelodi schedule data and should be checked against official service notices for changes.</p><div class="stats"><div><strong>4</strong><span>Mamelodi routes</span></div><div><strong>D23–D26</strong><span>Route coverage</span></div><div><strong>Mobile</strong><span>First design</span></div></div></div></section>
+</main><footer><div class="footer-inner"><div><strong>Tshwane Transit</strong><p>Routes and timetable information.</p></div><div class="footer-links"><a href="#planner">Plan trip</a><a href="#timetables">Timetables</a><a href="#routes">Routes</a></div></div><p class="copyright">© <span id="year"></span> Tshwane Transit.</p></footer><script src="assets/js/app.js" defer></script>
+</body></html>
